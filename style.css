@@ -736,14 +736,16 @@ h4 {
 
 /* Ajuste para evitar sobreposição no card de preços */
 .pricing-card.featured .mae-badge {
-    top: -50px;
-    right: -10px;
-    transform: rotate(5deg);
-    animation: floating 4s ease-in-out infinite;
-    font-size: 0.7rem;
-    padding: 6px 12px;
+    top: -20px;
+    right: -20px;
+    transform: rotate(10deg);
+    animation: pulse-premium 3s infinite ease-in-out;
+    font-size: 0.75rem;
+    padding: 8px 15px;
     background: var(--primary-pink);
-    color: white;
+    color: var(--text-dark);
+    border: 3px solid white;
+    box-shadow: 0 5px 15px rgba(255, 183, 197, 0.4);
 }
 
 @keyframes pulse-premium {
