@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
     }
 
-    // 2. --- COUNTDOWN TIMER (10 MINUTES) ---
+    // 2. --- COUNTDOWN TIMER (01:59:00) ---
     const countdownElement = document.getElementById('countdown');
     if (countdownElement) {
-        let timeLeft = 600; // 10 minutes default
+        let timeLeft = 7140; // 1 hour 59 minutes default
 
         // Persistent timer using localStorage
-        const savedTime = localStorage.getItem('kit_countdown_val');
-        const savedStamp = localStorage.getItem('kit_countdown_stamp');
+        const savedTime = localStorage.getItem('kit_maes_countdown_val');
+        const savedStamp = localStorage.getItem('kit_maes_countdown_stamp');
 
         if (savedTime && savedStamp) {
             const now = Math.floor(Date.now() / 1000);
@@ -21,20 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
             if (remaining > 0) {
                 timeLeft = remaining;
             } else {
-                timeLeft = 120; // If expired, reset to 2 minutes to keep urgency
+                timeLeft = 120; // If expired, reset to 2 minutes
             }
         }
 
         function updateTimer() {
-            const mins = Math.floor(timeLeft / 60);
+            const hours = Math.floor(timeLeft / 3600);
+            const mins = Math.floor((timeLeft % 3600) / 60);
             const secs = timeLeft % 60;
 
-            countdownElement.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            if (hours > 0) {
+                countdownElement.textContent = `${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            } else {
+                countdownElement.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
 
             if (timeLeft > 0) {
                 timeLeft--;
-                localStorage.setItem('kit_countdown_val', timeLeft);
-                localStorage.setItem('kit_countdown_stamp', Math.floor(Date.now() / 1000));
+                localStorage.setItem('kit_maes_countdown_val', timeLeft);
+                localStorage.setItem('kit_maes_countdown_stamp', Math.floor(Date.now() / 1000));
             } else {
                 timeLeft = 300; // Reset to 5m when finished
             }
@@ -69,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const popupName = document.getElementById('popup-name');
 
     const names = [
-        "Maria S.", "João P.", "Ana C.", "Carlos M.", "Juliana T.",
-        "Roberto F.", "Fernanda G.", "Lucas B.", "Amanda R.", "Thiago L."
+        "Prof. Maria S.", "Teacher João P.", "Prof. Ana C.", "Teacher Carlos M.", "Prof. Juliana T.",
+        "Teacher Roberto F.", "Prof. Fernanda G.", "Teacher Lucas B.", "Prof. Amanda R.", "Teacher Thiago L."
     ];
 
     function showRandomSale() {
