@@ -734,13 +734,16 @@ h4 {
     pointer-events: none;
 }
 
-/* Ajuste para evitar sobreposição no card de preços */
+/* Ajuste para centralizar o selo sem NENHUMA sobreposição */
 .pricing-card.featured .mae-badge {
-    top: -20px;
-    right: -20px;
-    transform: rotate(10deg);
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    margin: 10px auto 15px auto;
+    width: max-content;
     animation: pulse-premium 3s infinite ease-in-out;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     padding: 8px 15px;
     background: var(--primary-pink);
     color: var(--text-dark);
